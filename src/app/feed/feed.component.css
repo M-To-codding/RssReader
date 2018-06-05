@@ -1,0 +1,11 @@
+.hover-effect {
+  box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.24);
+  transform: scale(1.01);
+  transition: 1s all;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.open-item {
+  background: rgba(164, 203, 255, 0.4);
+}
