@@ -9,3 +9,7 @@
 .open-item {
   background: rgba(164, 203, 255, 0.4);
 }
+
+.read-message {
+  background: #acb6c5 !important;
+}

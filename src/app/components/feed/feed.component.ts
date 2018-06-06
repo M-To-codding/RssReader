@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FeedServiceService} from '../services/feed-service/feed-service.service';
-import {feedUrls} from '../resources/feed-urls';
-import {Feed} from "../models/feed/Feed";
+import {Component, OnInit} from '@angular/core';
+import {FeedServiceService} from '../../services/feed-service/feed-service.service';
+import {feedUrls} from '../../resources/feed-urls';
+import {Feed} from "../../models/feed/Feed";
 
 @Component({
   selector: 'app-feed',
@@ -13,6 +13,7 @@ export class FeedComponent implements OnInit {
   private data: any;
   private allFeeds = [];
   private items = [];
+  item: any;
 
   constructor(private fs: FeedServiceService) {
   }
@@ -41,6 +42,7 @@ export class FeedComponent implements OnInit {
     feed.showMessages = false;
 
     this.allFeeds.push(feed);
+
   }
 
   showMessages(feed) {
@@ -55,4 +57,10 @@ export class FeedComponent implements OnInit {
     }
 
   }
+
+  showMessageContent(item) {
+    this.item = item;
+    this.item.isRead = true;
+  }
+
 }

@@ -1,4 +1,4 @@
-<ul class="list-group list-group-flush text-left">
+<ul class="list-group list-group-flush text-left" id="feeds">
   <li
     class="list-group-item shadow"
     *ngFor="let feed of allFeeds"
@@ -21,13 +21,20 @@
   </li>
 </ul>
 
-<ol class="list-group text-left">
-  <li class="list-group-item bg-light" *ngFor="let item of items">
+<ol class="list-group text-left" *ngIf="items.length; else mesInfoBlock" id="messages">
+  <li
+    class="list-group-item bg-light"
+    *ngFor="let item of items"
+    (click)="showMessageContent(item)"
+    [ngClass]="{'read-message': item.isRead}"
+  >
     <h4>{{item.title}}</h4>
-    <p>{{item.description}}</p>
-    <p>{{item.content}}</p>
-    <img src="{{item.thumbnail}}" alt="">
-    <span>{{item.author}}</span>
   </li>
 </ol>
 
+<ng-template #mesInfoBlock>
+  Click on feed for displaying here all messages!
+</ng-template>
+
+
+<app-feed-item [item]="item" id="message-content"></app-feed-item>
