@@ -1,0 +1,10 @@
+<div *ngIf="item; else infoBlock">
+  <h4 [innerHTML]=item.title></h4>
+  <p [innerHTML]=item.content></p>
+  <p><b><small><em>Author: <u>{{item.author || 'Unknown'}}</u></em></small></b></p>
+</div>
+
+<ng-template #infoBlock>
+  <hr>
+  <p><small>Click on message for displaying here its content!</small></p>
+</ng-template>
