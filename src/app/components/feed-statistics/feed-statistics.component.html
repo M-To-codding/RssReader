@@ -1,3 +1,12 @@
-<p>
-  feed-statistics works!
-</p>
+<article id="statistics">
+  Count of feeds: {{feedData.feedsCount}}
+
+  <div *ngIf="feedData.messagesCount">
+  <br>
+    Count of messages in current feed: {{feedData.messagesCount}}
+  </div>
+  <div *ngIf="feedData.authorsCount >= 0 && feedData.messagesCount">
+  <br>
+    Count of authors in current feed: {{feedData.authorsCount}}
+  </div>
+</article>
