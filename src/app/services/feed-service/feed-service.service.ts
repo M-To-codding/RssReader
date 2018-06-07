@@ -14,7 +14,6 @@ export class FeedServiceService {
   }
 
   private extractFeeds(res: Response) {
-    console.log(res);
     return res || {};
   }
 

@@ -6,7 +6,8 @@ import {Feed} from "../../models/feed/Feed";
 @Component({
   selector: 'app-feed',
   templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.css']
+  styleUrls: ['./feed.component.css'],
+  providers: [FeedServiceService]
 })
 export class FeedComponent implements OnInit {
   urls = feedUrls;
@@ -14,6 +15,14 @@ export class FeedComponent implements OnInit {
   private allFeeds = [];
   private items = [];
   item: any;
+
+  public feedData = {
+    feedsCount: 0,
+    messagesCount: 0,
+    authorsCount: 0,
+    countOfAllChars: 0,
+    countOfLatChars: 0
+  };
 
   constructor(private fs: FeedServiceService) {
   }
@@ -43,6 +52,8 @@ export class FeedComponent implements OnInit {
 
     this.allFeeds.push(feed);
 
+    this.getStatistics('feedsCount', this.allFeeds);
+
   }
 
   showMessages(feed) {
@@ -54,6 +65,10 @@ export class FeedComponent implements OnInit {
         feed.showMessages = true;
       });
       this.items = feed.items;
+
+      console.log(feed.items);
+      this.getStatistics('messagesCount', this.items);
+      this.getStatistics('authorsCount', feed.items);
     }
 
   }
@@ -61,6 +76,33 @@ export class FeedComponent implements OnInit {
   showMessageContent(item) {
     this.item = item;
     this.item.isRead = true;
+  }
+
+  getStatistics(type, data) {
+    if (type === 'feedsCount' && data) {
+      this.feedData.feedsCount = data.length;
+
+    }
+    if (type === 'messagesCount' && data) {
+      this.feedData.messagesCount = data.length;
+
+    }
+    if (type === 'authorsCount' && data) {
+      let authors = [];
+
+      data.forEach(val => {
+        if (val.author) {
+          authors.push(val.author);
+        }
+      });
+
+      const result = authors.filter(function(item, index) {
+        return authors.indexOf(item) === index;
+      })
+
+      this.feedData.authorsCount = result.length || 0;
+      console.log(result);
+    }
   }
 
 }
