@@ -20,8 +20,7 @@ export class FeedComponent implements OnInit {
     feedsCount: 0,
     messagesCount: 0,
     authorsCount: 0,
-    countOfAllChars: 0,
-    countOfLatChars: 0
+    selectedFeedCharsCount: [0, 0, 0]
   };
 
   constructor(private fs: FeedServiceService) {
@@ -66,7 +65,6 @@ export class FeedComponent implements OnInit {
       });
       this.items = feed.items;
 
-      console.log(feed.items);
       this.getStatistics('messagesCount', this.items);
       this.getStatistics('authorsCount', feed.items);
     }
@@ -76,6 +74,8 @@ export class FeedComponent implements OnInit {
   showMessageContent(item) {
     this.item = item;
     this.item.isRead = true;
+
+    this.handleMessage(this.item);
   }
 
   getStatistics(type, data) {
@@ -101,8 +101,26 @@ export class FeedComponent implements OnInit {
       })
 
       this.feedData.authorsCount = result.length || 0;
-      console.log(result);
     }
+  }
+
+  handleMessage(message) {
+    let html,
+      div,
+      allChars = '',
+      latChars = '',
+      otherChars = '';
+
+    if (message) {
+      html = message.content;
+      div = document.createElement('div');
+      div.innerHTML = html;
+      allChars = div.textContent;
+      otherChars = allChars.replace(/[^а-яА-Я]+/g, '');
+      latChars = allChars.replace(/[^a-zA-Z]+/g, '');
+      allChars = (+otherChars.length) + (+latChars.length) + '';
+    }
+    this.feedData.selectedFeedCharsCount = [+allChars, latChars.length, otherChars.length];
   }
 
 }
