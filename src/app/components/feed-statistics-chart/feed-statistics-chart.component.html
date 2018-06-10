@@ -1,0 +1,10 @@
+<div id="feed-stat-chart" >
+  <canvas mdbChart
+          [chartType]="chartType"
+          [data]="feedData.selectedFeedCharsCount"
+          [labels]="chartLabels"
+          [options]="chartOptions"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
