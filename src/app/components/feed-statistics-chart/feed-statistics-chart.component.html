@@ -1,10 +1,9 @@
-<div id="feed-stat-chart" >
+<div id="feed-stat-chart" *ngIf="feedData.selectedFeedCharsCount.length">
   <canvas mdbChart
           [chartType]="chartType"
           [data]="feedData.selectedFeedCharsCount"
+          [legend]="true"
           [labels]="chartLabels"
-          [options]="chartOptions"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)">
+          [options]="chartOptions">
   </canvas>
 </div>
