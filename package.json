@@ -22,7 +22,6 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "angular-bootstrap-md": "^6.1.2",
-    "angular4-fusioncharts": "^1.0.0",
     "bootstrap": "^4.1.1",
     "chart.js": "^2.7.2",
     "core-js": "^2.4.1",
