@@ -1,46 +1,47 @@
-<ul class="list-group list-group-flush text-left" id="feeds">
-  <li
-    class="list-group-item shadow"
-    *ngFor="let feed of allFeeds"
-    [ngClass]="{'open-item': feed.showMessages}"
-    (click)="showMessages(feed)"
-    appHoverEffect
-  >
+<section class="feeds-content col-lg-6 col-md-6 col-sm-12">
+  <ul class="list-group list-group-flush text-left" id="feeds">
+    <li
+      class="list-group-item shadow"
+      *ngFor="let feed of allFeeds"
+      [ngClass]="{'open-item': feed.showMessages}"
+      (click)="showMessages(feed)"
+      appHoverEffect
+    >
     <span class="title">
       <b>{{feed.feed.title}}</b>
     </span>
 
-    <span class="description text-secondary">
+      <span class="description text-secondary">
       {{feed.feed.description}}
     </span>
 
-    <span class="badge badge-primary badge-pill">
+      <span class="badge badge-primary badge-pill">
         <small> {{feed.feedsCount || '0'}} </small>
       </span>
 
-  </li>
-</ul>
+    </li>
+  </ul>
 
-<ol class="list-group text-left" *ngIf="items.length; else mesInfoBlock" id="messages">
-  <li
-    class="list-group-item bg-light"
-    *ngFor="let item of items"
-    (click)="showMessageContent(item)"
-    [ngClass]="{'read-message': item.isRead}"
-  >
-    <h4>{{item.title}}</h4>
-  </li>
-</ol>
+  <ol class="list-group text-left" *ngIf="items.length; else mesInfoBlock" id="messages">
+    <li
+      class="list-group-item bg-light"
+      *ngFor="let item of items"
+      (click)="showMessageContent(item)"
+      [ngClass]="{'read-message': item.isRead}"
+    >
+      <h6>{{item.title}}</h6>
+    </li>
+  </ol>
 
-<ng-template #mesInfoBlock>
-  Click on feed for displaying here all messages!
-</ng-template>
+  <ng-template #mesInfoBlock>
+    Click on feed for displaying here all messages!
+  </ng-template>
 
+  <app-feed-item [item]="item" id="message-content"></app-feed-item>
+  <hr>
+</section>
 
-<app-feed-item [item]="item" id="message-content"></app-feed-item>
-
-<hr>
-<section class="statistics text-center">
+<section class="text-center col-lg-5 col-md-5 col-sm-12 statistics">
   <h3 class="title">Statistics</h3>
 
   <hr>

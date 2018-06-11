@@ -20,7 +20,7 @@ export class FeedComponent implements OnInit {
     feedsCount: 0,
     messagesCount: 0,
     authorsCount: 0,
-    selectedFeedCharsCount: [0, 0, 0]
+    selectedFeedCharsCount: []
   };
 
   constructor(private fs: FeedServiceService) {
